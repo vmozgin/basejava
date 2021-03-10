@@ -1,4 +1,3 @@
-
 /**
  * Array based storage for Resumes
  */
@@ -24,11 +23,9 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
-        for (Resume resume : storage) {
-            if (resume != null) {
-                if (resume.uuid.equals(uuid)) {
-                    return resume;
-                }
+        for (int i = 0; i < storageSize; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return storage[i];
             }
         }
         return null;
@@ -38,13 +35,12 @@ public class ArrayStorage {
         for (int i = 0; i < storageSize; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 storage[i] = null;
+                for (int j = i; j < storageSize - 1; j++) {
+                    storage[j] = storage[j + 1];
+                }
                 storageSize--;
                 break;
             }
-        }
-        for (int i = 0; i < storageSize; i++) {
-            storage[i] = storage[i + 1];
-            storage[i + 1] = null;
         }
     }
 
