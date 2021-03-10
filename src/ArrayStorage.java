@@ -4,6 +4,11 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
     private int storageSize = 0;
+    private boolean success = false;
+
+    private void resumeNotFound() {
+        System.out.println("Такого резюме нет");
+    }
 
     void clear() {
         for (int i = 0; i < storageSize; i++) {
@@ -19,12 +24,26 @@ public class ArrayStorage {
         }
     }
 
+    void update(Resume r) {
+        for (int i = 0; i < storageSize; i ++) {
+            if (storage[i].equals(r)) {
+                storage[i] = r;
+                success = true;
+            }
+        }
+
+        if (success = false) {
+            resumeNotFound();
+        }
+    }
+
     Resume get(String uuid) {
         for (int i = 0; i < storageSize; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return storage[i];
             }
         }
+        resumeNotFound();
         return null;
     }
 
@@ -36,8 +55,13 @@ public class ArrayStorage {
                     storage[j] = storage[j + 1];
                 }
                 storageSize--;
+                success = true;
                 break;
             }
+        }
+
+        if (success = false) {
+            resumeNotFound();
         }
     }
 
