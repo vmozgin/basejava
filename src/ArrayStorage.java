@@ -5,10 +5,6 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
     private int storageSize = 0;
 
-    private void resumeNotFound() {
-        System.out.println("Такого резюме нет");
-    }
-
     public void clear() {
         for (int i = 0; i < storageSize; i++) {
             storage[i] = null;
