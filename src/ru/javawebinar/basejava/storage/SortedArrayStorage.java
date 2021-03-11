@@ -5,10 +5,6 @@ import ru.javawebinar.basejava.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage{
-    @Override
-    public void clear() {
-
-    }
 
     @Override
     public void update(Resume r) {
@@ -17,7 +13,19 @@ public class SortedArrayStorage extends AbstractArrayStorage{
 
     @Override
     public void save(Resume r) {
-
+        int indexForSave = Arrays.binarySearch(storage,0,size,r);
+        if (getIndex(r.getUuid()) != -1) {
+            System.out.println("Resume " + r.getUuid() + " already exist");
+        } else if (size >= STORAGE_LIMIT) {
+            System.out.println("Storage overflow");
+        } else {
+            int temp = (indexForSave * - 1) - 1;
+            for (int i = size - 1; i > temp; i++) {
+                storage[i] = storage[i + 1];
+            }
+            storage[size] = r;
+            size++;
+        }
     }
 
     @Override
