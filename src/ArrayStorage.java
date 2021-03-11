@@ -4,7 +4,6 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
     private int storageSize = 0;
-    private boolean success = false;
 
     private void resumeNotFound() {
         System.out.println("Такого резюме нет");
@@ -18,9 +17,9 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
-        if (getIndex(r.uuid) != - 1) {
+        if (getIndex(r.uuid) != -1) {
             System.out.println("Resume " + r.uuid + " already exist");
-        } else if (storageSize == storage.length){
+        } else if (storageSize == storage.length) {
             System.out.println("Storage overflow");
         } else {
             storage[storageSize] = r;
@@ -30,7 +29,7 @@ public class ArrayStorage {
 
     public void update(Resume r) {
         int index = getIndex(r.uuid);
-        if (index == - 1) {
+        if (index == -1) {
             System.out.println("Resume " + r.uuid + " not exist");
         } else {
             storage[index] = r;
@@ -39,9 +38,9 @@ public class ArrayStorage {
 
     public Resume get(String uuid) {
         int index = getIndex(uuid);
-        if (index == - 1) {
+        if (index == -1) {
             System.out.println("Resume " + uuid + " not exist");
-            return  null;
+            return null;
         }
         return storage[index];
     }
@@ -49,9 +48,9 @@ public class ArrayStorage {
 
     public void delete(String uuid) {
         int index = getIndex(uuid);
-        if (index == - 1) {
+        if (index == -1) {
             System.out.println("Resume " + uuid + " not exist");
-        }else {
+        } else {
             storage[index] = storage[storageSize - 1];
             storage[storageSize - 1] = null;
             storageSize--;
